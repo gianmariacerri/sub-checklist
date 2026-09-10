@@ -1,0 +1,12 @@
+{
+  "name": "Checklist Attrezzatura Sub",
+  "short_name": "Sub Checklist",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b2436",
+  "theme_color": "#0b2436",
+  "icons": [
+    { "src": "icon.png", "sizes": "192x192", "type": "image/png" }
+  ]
+}
