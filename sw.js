@@ -1,5 +1,5 @@
-const CACHE_NAME = 'sub-checklist-v5';
-const FILES_TO_CACHE = ['./', './index.html', './manifest.json', './icon.png'];
+const CACHE_NAME = 'sub-checklist-v6';
+const FILES_TO_CACHE = ['./', './index.html', './manifest.json', './icon-v2.png'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
