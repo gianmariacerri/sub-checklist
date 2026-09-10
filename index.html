@@ -9,89 +9,86 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Sub Checklist">
-<meta name="theme-color" content="#0b2436">
+<meta name="theme-color" content="#f6f4ef">
 <style>
   :root {
-    --deep:   #0b2436;
-    --mid:    #123a52;
-    --panel:  #10314a;
-    --line:   #1e4c69;
-    --foam:   #e8f2f4;
-    --dim:    #7fa8bc;
-    --coral:  #ff8a5c;
-    --done:   #4fb0a5;
+    --page:   #f6f4ef;
+    --card:   #fbf9f4;
+    --line:   #e2ddd0;
+    --navy:   #12263a;
+    --muted:  #7c7566;
+    --muted2: #a8a297;
   }
 
   * { box-sizing: border-box; }
 
   body {
     margin: 0;
-    background: var(--deep);
-    background-image: radial-gradient(ellipse at top, rgba(255,255,255,0.04), transparent 60%);
-    color: var(--foam);
+    background: var(--page);
+    color: var(--navy);
     font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    padding: 32px 20px 60px;
+    padding: 28px 18px 56px;
     min-height: 100%;
   }
 
   .wrap { max-width: 620px; margin: 0 auto; }
 
-  header { margin-bottom: 28px; }
+  header { margin-bottom: 24px; }
 
   h1 {
-    font-size: 26px;
-    font-weight: 700;
+    font-size: 24px;
+    font-weight: 600;
     letter-spacing: -0.01em;
     margin: 0 0 4px;
+    color: var(--navy);
   }
 
-  .sub { color: var(--dim); font-size: 14px; margin: 0; }
+  .sub { color: var(--muted); font-size: 14px; margin: 0; }
 
   .progress-row {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-top: 18px;
+    margin-top: 16px;
   }
 
   .bar {
     flex: 1;
-    height: 8px;
-    background: var(--panel);
-    border-radius: 5px;
+    height: 6px;
+    background: var(--line);
+    border-radius: 4px;
     overflow: hidden;
-    border: 1px solid var(--line);
   }
 
   .bar-fill {
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, var(--done), var(--coral));
+    background: var(--navy);
     transition: width 0.35s ease;
-    border-radius: 5px;
+    border-radius: 4px;
   }
 
   .count {
     font-size: 13px;
-    color: var(--dim);
+    color: var(--muted);
     white-space: nowrap;
     min-width: 44px;
     text-align: right;
   }
 
   .group {
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     border: 1px solid var(--line);
     border-radius: 12px;
     overflow: hidden;
-    background: rgba(255,255,255,0.015);
+    background: var(--card);
   }
 
   .group-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 18px;
+    padding: 15px 16px;
     cursor: pointer;
     user-select: none;
   }
@@ -103,22 +100,22 @@
   }
 
   .group-title {
-    font-size: 17px;
-    font-weight: 700;
-    letter-spacing: -0.005em;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
   }
 
   .group-count {
     font-size: 12.5px;
-    color: var(--dim);
+    color: var(--muted);
   }
 
   .chevron {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     flex: none;
     transition: transform 0.25s ease;
-    color: var(--dim);
+    color: var(--muted);
   }
 
   .group.open .chevron { transform: rotate(180deg); }
@@ -130,45 +127,39 @@
   }
 
   .group-body-inner {
-    padding: 0 14px 16px;
+    padding: 0 4px 6px;
   }
 
   .section-title {
-    font-size: 12px;
-    color: var(--dim);
+    font-size: 11.5px;
+    color: var(--muted);
     font-weight: 600;
-    margin: 14px 0 8px 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin: 16px 0 6px 16px;
   }
 
-  .section-title:first-child { margin-top: 2px; }
-
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    overflow: hidden;
-  }
+  .section-title:first-child { margin-top: 4px; }
 
   .item {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 13px 14px;
-    border-bottom: 1px solid var(--line);
+    padding: 12px 16px;
+    border-top: 1px solid var(--line);
     cursor: pointer;
     user-select: none;
     transition: background 0.15s ease;
   }
 
-  .item:last-child { border-bottom: none; }
-  .item:hover { background: rgba(255,255,255,0.03); }
+  .item:hover { background: #f3f0e9; }
 
   .box {
     flex: none;
     width: 20px;
     height: 20px;
     border-radius: 6px;
-    border: 2px solid var(--line);
+    border: 1.5px solid #c9c3b5;
     background: transparent;
     display: flex;
     align-items: center;
@@ -176,37 +167,36 @@
     transition: background 0.15s ease, border-color 0.15s ease;
   }
 
-  .box svg { width: 12px; height: 12px; opacity: 0; transition: opacity 0.15s ease; }
+  .box svg { width: 11px; height: 11px; opacity: 0; transition: opacity 0.15s ease; }
 
-  .item.checked .box { background: var(--done); border-color: var(--done); }
+  .item.checked .box { background: var(--navy); border-color: var(--navy); }
   .item.checked .box svg { opacity: 1; }
 
   .label {
-    font-size: 15px;
+    font-size: 14.5px;
     line-height: 1.3;
-    color: var(--foam);
-    transition: color 0.15s ease, opacity 0.15s ease;
+    color: var(--navy);
+    transition: color 0.15s ease;
   }
 
   .item.checked .label {
-    color: var(--dim);
-    opacity: 0.7;
+    color: var(--muted2);
     text-decoration: line-through;
   }
 
   .reset {
     display: block;
-    margin: 30px auto 0;
+    margin: 26px auto 0;
     background: none;
     border: 1px solid var(--line);
-    color: var(--dim);
+    color: var(--muted);
     font-size: 13px;
     padding: 9px 16px;
     border-radius: 8px;
     cursor: pointer;
   }
 
-  .reset:hover { color: var(--foam); border-color: var(--dim); }
+  .reset:hover { color: var(--navy); border-color: #c9c3b5; }
 </style>
 </head>
 <body>
@@ -233,42 +223,42 @@
       <div class="group-body-inner">
 
         <p class="section-title">Sistema di Supporto Vitale &amp; Strumentazione</p>
-        <div class="card">
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Erogatore Principale &amp; Octopus: Apeks MTX-RC Stage 3 (Attacco DIN)</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Computer Subacqueo: Garmin Descent Mk3i</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Sonda: Garmin Descent T2</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Manometro: Modello analogico standard</div></div>
+        <div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Erogatore Principale &amp; Octopus: Apeks MTX-RC Stage 3 (Attacco DIN)</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Computer Subacqueo: Garmin Descent Mk3i</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Sonda: Garmin Descent T2</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Manometro: Modello analogico standard</div></div>
         </div>
 
         <p class="section-title">Protezione Termica</p>
-        <div class="card">
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Muta 5mm: Aqualung Aquaflex (Taglia XL)</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Muta 3mm: Cressi Fast (Taglia L)</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Cappuccio: Aqualung 5mm (Taglia XL)</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Calzari: Cressi Korsor 3mm</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Calzini: Cressi Neoprene Socks 1mm</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Rash Guard: Decathlon UV 50+ (Taglia XL)</div></div>
+        <div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Muta 1: Aqualung Aquaflex 5mm (Taglia XL)</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Muta 2: Cressi Fast 3mm (Taglia L)</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Cappuccio: Aqualung 5mm (Taglia XL)</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Calzari: Cressi Korsor 3mm</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Calzini: Cressi Neoprene Socks 1mm</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Rash Guard: Decathlon UV 50+ (Taglia XL)</div></div>
         </div>
 
         <p class="section-title">Attrezzatura Leggera (ABC) e Scorta</p>
-        <div class="card">
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Pinne: Scubapro Seawing Supernova</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Maschera Primaria: Hollis M1</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Maschera di Scorta: Cressi Nano</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Snorkel: Cressi Alpha Ultra Dry</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Gancio da Corrente: Cressi Reef Hook</div></div>
+        <div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Pinne: Scubapro Seawing Supernova</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Maschera Primaria: Hollis M1</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Maschera di Scorta: Cressi Nano</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Snorkel: Cressi Alpha Ultra Dry</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Gancio da Corrente: Cressi Reef Hook</div></div>
         </div>
 
         <p class="section-title">Sistema di Zavorra</p>
-        <div class="card">
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Cintura Pesi: C4 Carbon in silicone</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Piombi: Blocchi di zavorra standard, 6kg</div></div>
+        <div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Cintura Pesi: C4 Carbon in silicone</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Piombi: Blocchi di zavorra standard, 6kg</div></div>
         </div>
 
         <p class="section-title">Trasporto</p>
-        <div class="card">
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Borsone: Cressi Gorilla Pro</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Sacca a Rete: Mares</div></div>
+        <div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Borsone: Cressi Gorilla Pro</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Sacca a Rete: Mares</div></div>
         </div>
 
       </div>
@@ -285,24 +275,24 @@
     </div>
     <div class="group-body" data-body>
       <div class="group-body-inner">
-        <div class="card">
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Chiave 9/16" - 5/8"</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Chiave 5/8" - 11/16"</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Brugole 4-5-6-8</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Apeks Travel Kit</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Swivel</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Grasso</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Cinturino Ricambio Garmin</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Cinturino Lungo Garmin</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Anti-Fog</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Bolt Snap</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Double Bolt Snap</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Apeks Tappo DIN</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Batteria 18650 Torcia</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Sagola</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Taglia Sagola</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">iFixIt Kit per rimuovere O-Ring</div></div>
-          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#0b2436" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Strap Maschera</div></div>
+        <div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Chiave 9/16" - 5/8"</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Chiave 5/8" - 11/16"</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Brugole 4-5-6-8</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Apeks Travel Kit</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Swivel</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Grasso</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Cinturino Ricambio Garmin</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Cinturino Lungo Garmin</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Anti-Fog</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Bolt Snap</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Double Bolt Snap</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Apeks Tappo DIN</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Batteria 18650 Torcia</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Sagola</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Taglia Sagola</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">iFixIt Kit per rimuovere O-Ring</div></div>
+          <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Strap Maschera</div></div>
         </div>
       </div>
     </div>
