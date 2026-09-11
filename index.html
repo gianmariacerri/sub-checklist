@@ -173,6 +173,7 @@
   .item.checked .box svg { opacity: 1; }
 
   .label {
+    flex: 1;
     font-size: 14.5px;
     line-height: 1.3;
     color: var(--navy);
@@ -183,6 +184,61 @@
     color: var(--muted2);
     text-decoration: line-through;
   }
+
+  .delete-x {
+    flex: none;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted2);
+    font-size: 15px;
+    border-radius: 50%;
+  }
+
+  .delete-x:hover { background: var(--line); color: var(--navy); }
+
+  .add-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  .add-input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    color: var(--navy);
+    outline: none;
+    font-family: inherit;
+    padding: 3px 0;
+  }
+
+  .add-input::placeholder { color: var(--muted2); }
+
+  .add-btn {
+    flex: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1.5px solid var(--line);
+    background: transparent;
+    color: var(--navy);
+    font-size: 16px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .add-btn:hover { background: #f3f0e9; }
 
   .reset {
     display: block;
@@ -223,42 +279,47 @@
       <div class="group-body-inner">
 
         <p class="section-title">Sistema di Supporto Vitale &amp; Strumentazione</p>
-        <div>
+        <div data-list="vitale">
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Erogatore: Apeks MTX-RC</div></div>
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Computer Subacqueo: Garmin Descent Mk3i</div></div>
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Sonda: Garmin Descent T2</div></div>
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Manometro: Modello analogico standard</div></div>
+          <div class="add-row"><input type="text" class="add-input" placeholder="Aggiungi elemento…" data-add-input><button type="button" class="add-btn" data-add-btn>+</button></div>
         </div>
 
         <p class="section-title">Protezione Termica</p>
-        <div>
+        <div data-list="termica">
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Muta 1: Aqualung Aquaflex 5mm (Taglia XL)</div></div>
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Muta 2: Cressi Fast 3mm (Taglia L)</div></div>
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Cappuccio: Aqualung 5mm (Taglia XL)</div></div>
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Calzari: Cressi Korsor 3mm</div></div>
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Calzini: Cressi Neoprene Socks 1mm</div></div>
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Rash Guard: Decathlon UV 50+ (Taglia XL)</div></div>
+          <div class="add-row"><input type="text" class="add-input" placeholder="Aggiungi elemento…" data-add-input><button type="button" class="add-btn" data-add-btn>+</button></div>
         </div>
 
         <p class="section-title">Attrezzatura Leggera (ABC) e Scorta</p>
-        <div>
+        <div data-list="abc">
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Pinne: Scubapro Seawing Supernova</div></div>
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Maschera Primaria: Hollis M1</div></div>
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Maschera di Scorta: Cressi Nano</div></div>
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Snorkel: Cressi Alpha Ultra Dry</div></div>
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Gancio da Corrente: Cressi Reef Hook</div></div>
+          <div class="add-row"><input type="text" class="add-input" placeholder="Aggiungi elemento…" data-add-input><button type="button" class="add-btn" data-add-btn>+</button></div>
         </div>
 
         <p class="section-title">Sistema di Zavorra</p>
-        <div>
+        <div data-list="zavorra">
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Cintura Pesi: C4 Carbon in silicone</div></div>
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Piombi: Blocchi di zavorra standard, 6kg</div></div>
+          <div class="add-row"><input type="text" class="add-input" placeholder="Aggiungi elemento…" data-add-input><button type="button" class="add-btn" data-add-btn>+</button></div>
         </div>
 
         <p class="section-title">Trasporto</p>
-        <div>
+        <div data-list="trasporto">
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Borsone: Cressi Gorilla Pro</div></div>
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Sacca a Rete: Mares</div></div>
+          <div class="add-row"><input type="text" class="add-input" placeholder="Aggiungi elemento…" data-add-input><button type="button" class="add-btn" data-add-btn>+</button></div>
         </div>
 
       </div>
@@ -275,7 +336,7 @@
     </div>
     <div class="group-body" data-body>
       <div class="group-body-inner">
-        <div>
+        <div data-list="toolkit">
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Chiave 9/16" - 5/8"</div></div>
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Chiave 5/8" - 11/16"</div></div>
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Brugole 4-5-6-8</div></div>
@@ -293,6 +354,7 @@
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Taglia Sagola</div></div>
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">iFixIt Kit per rimuovere O-Ring</div></div>
           <div class="item"><div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">Strap Maschera</div></div>
+          <div class="add-row"><input type="text" class="add-input" placeholder="Aggiungi elemento…" data-add-input><button type="button" class="add-btn" data-add-btn>+</button></div>
         </div>
       </div>
     </div>
@@ -303,6 +365,49 @@
 </div>
 
 <script>
+  const STORAGE_KEY = 'subChecklistCustomItems';
+
+  function loadCustom() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function saveCustom(data) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    } catch (e) {
+      /* storage unavailable, custom items just won't persist */
+    }
+  }
+
+  const customData = loadCustom();
+
+  function makeItemEl(label, custom) {
+    const div = document.createElement('div');
+    div.className = 'item' + (custom ? ' custom' : '');
+    div.innerHTML =
+      '<div class="box"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>' +
+      '<div class="label"></div>' +
+      (custom ? '<span class="delete-x">&#10005;</span>' : '');
+    div.querySelector('.label').textContent = label;
+    return div;
+  }
+
+  // render any previously-saved custom items
+  document.querySelectorAll('[data-list]').forEach((list) => {
+    const key = list.getAttribute('data-list');
+    const items = customData[key] || [];
+    const addRow = list.querySelector('.add-row');
+    items.forEach((label) => {
+      const el = makeItemEl(label, true);
+      list.insertBefore(el, addRow);
+    });
+  });
+
   const groups = Array.from(document.querySelectorAll('[data-group]'));
 
   function setBodyHeight(group) {
@@ -315,7 +420,7 @@
     }
   }
 
-  groups.forEach(group => {
+  groups.forEach((group) => {
     const header = group.querySelector('[data-toggle]');
     header.addEventListener('click', () => {
       group.classList.toggle('open');
@@ -324,35 +429,101 @@
     setBodyHeight(group);
   });
 
-  const allItems = Array.from(document.querySelectorAll('.item'));
   const barFill = document.getElementById('barFill');
   const countLabel = document.getElementById('countLabel');
 
+  function getAllItems() {
+    return Array.from(document.querySelectorAll('.item'));
+  }
+
   function updateGroupCount(group) {
     const items = Array.from(group.querySelectorAll('.item'));
-    const checked = items.filter(i => i.classList.contains('checked')).length;
+    const checked = items.filter((i) => i.classList.contains('checked')).length;
     const countEl = group.querySelector('[data-group-count]');
     countEl.textContent = checked + ' / ' + items.length;
   }
 
   function updateProgress() {
+    const allItems = getAllItems();
     const total = allItems.length;
-    const checked = allItems.filter(i => i.classList.contains('checked')).length;
+    const checked = allItems.filter((i) => i.classList.contains('checked')).length;
     barFill.style.width = (total ? (checked / total) * 100 : 0) + '%';
     countLabel.textContent = checked + ' / ' + total;
     groups.forEach(updateGroupCount);
-    groups.forEach(g => setBodyHeight(g));
+    groups.forEach((g) => setBodyHeight(g));
   }
 
-  allItems.forEach(item => {
-    item.addEventListener('click', () => {
+  function removeCustomItem(list, label) {
+    const key = list.getAttribute('data-list');
+    const items = customData[key] || [];
+    const idx = items.indexOf(label);
+    if (idx !== -1) {
+      items.splice(idx, 1);
+      customData[key] = items;
+      saveCustom(customData);
+    }
+  }
+
+  function addCustomItem(list, label) {
+    const key = list.getAttribute('data-list');
+    if (!customData[key]) customData[key] = [];
+    customData[key].push(label);
+    saveCustom(customData);
+    const addRow = list.querySelector('.add-row');
+    const el = makeItemEl(label, true);
+    list.insertBefore(el, addRow);
+  }
+
+  // event delegation: toggling / deleting items works for static AND dynamically-added ones
+  document.addEventListener('click', (e) => {
+    const delBtn = e.target.closest('.delete-x');
+    if (delBtn) {
+      const item = delBtn.closest('.item');
+      const list = item.closest('[data-list]');
+      const label = item.querySelector('.label').textContent;
+      removeCustomItem(list, label);
+      item.remove();
+      updateProgress();
+      return;
+    }
+
+    const item = e.target.closest('.item');
+    if (item) {
       item.classList.toggle('checked');
       updateProgress();
-    });
+      return;
+    }
+
+    const addBtn = e.target.closest('[data-add-btn]');
+    if (addBtn) {
+      const list = addBtn.closest('[data-list]');
+      const input = list.querySelector('[data-add-input]');
+      const value = input.value.trim();
+      if (value) {
+        addCustomItem(list, value);
+        input.value = '';
+        updateProgress();
+      }
+      input.focus();
+      return;
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && e.target.matches('[data-add-input]')) {
+      e.preventDefault();
+      const list = e.target.closest('[data-list]');
+      const value = e.target.value.trim();
+      if (value) {
+        addCustomItem(list, value);
+        e.target.value = '';
+        updateProgress();
+      }
+    }
   });
 
   document.getElementById('resetBtn').addEventListener('click', () => {
-    allItems.forEach(i => i.classList.remove('checked'));
+    getAllItems().forEach((i) => i.classList.remove('checked'));
     updateProgress();
   });
 
